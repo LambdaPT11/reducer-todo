@@ -1,7 +1,10 @@
-import React, {useState} from 'react';
+import React, { useReducer, useState } from 'react';
+import { reducer, initialState } from '../reducers/reducer.js';
 import TodoItem from './todoItem.component.jsx';
 
 const TodoList = () => {
+
+    const [state] = useReducer( reducer, initialState );
 
     const [newItem, setNewItem] = useState({
         item: '',
@@ -25,7 +28,7 @@ const TodoList = () => {
                 />
             </form>
 
-            {newItem.map( item => 
+            { state.map( item => 
                 <TodoItem item={item} />
             )}
             
