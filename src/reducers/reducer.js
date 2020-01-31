@@ -9,7 +9,7 @@ export const initialState = [
     {
         item: 'Make Sweet Tea',
         completed: false,
-        id: Date.now()
+        id: 3892987590
     }
 ]
 
