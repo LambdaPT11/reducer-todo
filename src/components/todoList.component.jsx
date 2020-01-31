@@ -4,7 +4,7 @@ import TodoItem from './todoItem.component.jsx';
 
 const TodoList = () => {
 
-    const [state] = useReducer( reducer, initialState );
+    const [state, dispatch] = useReducer( reducer, initialState );
 
     const [newItem, setNewItem] = useState({
         item: '',
@@ -16,9 +16,19 @@ const TodoList = () => {
         setNewItem({...newItem, [e.target.name]: e.target.value })
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch({ type: 'ADD_ITEM', payload: newItem});
+        setNewItem({
+            item: '',
+            completed: false,
+            id: Date.now()
+        })
+    }
+
     return(
         <div>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <input 
                     type="text"
                     name="item"
@@ -26,6 +36,7 @@ const TodoList = () => {
                     value={newItem.item}
                     onChange={(e)=> handleChanges(e)}
                 />
+                <button>submit</button>
             </form>
 
             { state.map( item => 
