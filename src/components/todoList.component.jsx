@@ -38,9 +38,10 @@ const TodoList = () => {
                 />
                 <button>submit</button>
             </form>
+            <button onClick={() => dispatch({ type: 'CLEAR_COMPLETE'})}>delete</button>
 
             { state.map( item => 
-                <TodoItem item={item} />
+                <TodoItem key={item.id} item={item} dispatch={dispatch} />
             )}
             
         </div>

@@ -22,6 +22,20 @@ export const reducer = (state, action) => {
                 completed: false,
                 id: Date.now()
             }];
+            case 'TOGGLE':
+                return state.map((item) => {
+                    if (item.id === action.payload.id) {
+                        return {
+                            ...item,
+                            completed: !item.completed
+                        };
+                    }
+                    else {
+                        return item;
+                    }
+                })
+            case 'CLEAR_COMPLETE':
+                return state.filter((item => !item.completed));
         default:
             return state;
     }
